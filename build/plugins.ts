@@ -8,7 +8,6 @@ import WindiCSS from "vite-plugin-windicss";
 import { viteMockServe } from "vite-plugin-mock";
 import VueI18n from "@intlify/vite-plugin-vue-i18n";
 import { visualizer } from "rollup-plugin-visualizer";
-import removeConsole from "vite-plugin-remove-console";
 import themePreprocessorPlugin from "@pureadmin/theme";
 import { genScssMultipleScopeVars } from "/@/layout/theme";
 
@@ -26,8 +25,6 @@ export function getPluginsList(command, VITE_LEGACY) {
     // jsx、tsx语法支持
     vueJsx(),
     WindiCSS(),
-    // 线上环境删除console
-    removeConsole(),
     viteBuildInfo(),
     // 自定义主题
     themePreprocessorPlugin({

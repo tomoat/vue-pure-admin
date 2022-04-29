@@ -13,12 +13,12 @@ touch README.md .nojekyll
 # deploy to github
 if [ -z "$GITHUB_TOKEN" ]; then
   msg='deploy'
-  githubUrl=git@github.com:xiaoxian521/vue-pure-admin.git
+  githubUrl=git@github.com:tomoat/vue-pure-admin.git
 else
   msg='ci: Automatic deployment from github actions'
-  githubUrl=https://xiaoxian521:${GITHUB_TOKEN}@github.com/xiaoxian521/vue-pure-admin.git
-  git config --global user.name "xiaoxian521"
-  git config --global user.email "1923740402@qq.com"
+  githubUrl=https://tomoat:${GITHUB_TOKEN}@github.com/tomoat/vue-pure-admin.git
+  git config --global user.name "tomoat"
+  git config --global user.email "ljc6qx@163.com"
 fi
 git init
 git add -A

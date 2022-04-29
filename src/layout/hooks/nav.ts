@@ -9,6 +9,7 @@ import { storageSession } from "/@/utils/storage";
 import { useAppStoreHook } from "/@/store/modules/app";
 import { i18nChangeLanguage } from "@wangeditor/editor";
 import { useEpThemeStoreHook } from "/@/store/modules/epTheme";
+import { useUserStoreHook } from "/@/store/modules/user";
 
 const errorInfo = "当前路由配置不正确，请检查配置";
 
@@ -45,8 +46,8 @@ export function useNav() {
 
   // 退出登录
   function logout() {
-    storageSession.removeItem("info");
-    router.push("/login");
+    // emitter.emit("logout");
+    useUserStoreHook().logOut();
   }
 
   function backHome() {

@@ -64,6 +64,22 @@ export const usePermissionStore = defineStore({
     // 清空缓存页面
     clearAllCachePage() {
       this.cachePageList = [];
+    },
+
+    // 清空菜单缓存
+    clearAllCacheMenu() {
+      this.wholeMenus = [];
+      this.menusTree = [];
+      this.buttonAuth = [];
+    },
+
+    getPermissionList() {
+      return {
+        wholeMenus: this.wholeMenus,
+        menusTree: this.menusTree,
+        buttonAuth: this.buttonAuth,
+        cachePageList: this.cachePageList
+      };
     }
   }
 });

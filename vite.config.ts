@@ -3,7 +3,7 @@ import { resolve } from "path";
 import pkg from "./package.json";
 import { warpperEnv, regExps } from "./build";
 import { getPluginsList } from "./build/plugins";
-import { UserConfigExport, ConfigEnv, loadEnv } from "vite";
+import { UserConfig, ConfigEnv, loadEnv } from "vite";
 
 // 当前执行node命令时文件夹的地址（工作目录）
 const root: string = process.cwd();
@@ -25,7 +25,7 @@ const __APP_INFO__ = {
   lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
 };
 
-export default ({ command, mode }: ConfigEnv): UserConfigExport => {
+export default ({ command, mode }: ConfigEnv): UserConfig => {
   const {
     VITE_PORT,
     VITE_LEGACY,
@@ -55,6 +55,16 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           }
         ]
       }
+      // preprocessorOptions: {
+      //   less: {
+      //     javascriptEnabled: true,
+      //     modifyVars: {
+      //       hack: `true; @import 'ant-design-vue/es/style/themes/default.less'`, // dark.less
+      //       // '@primary-color': '#52c41a', // 全局主色
+      //       '@namespace': 'proofread',
+      //     },
+      //   }
+      // }
     },
     // 服务端渲染
     server: {
@@ -82,8 +92,21 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       exclude: ["@pureadmin/theme/dist/browser-utils"]
     },
     build: {
-      sourcemap: false,
-      brotliSize: false,
+      sourcemap: true,
+      /**
+       * 当 minify=“minify:'terser'” 解开注释
+       * Uncomment when minify="minify:'terser'"
+       */
+      // minify: 'terser',
+      // terserOptions: {
+      //   compress: {
+      //     // 生产环境时移除console
+      //     drop_debugger: true,
+      //     keep_infinity: true,
+      //     drop_console: VITE_DROP_CONSOLE,
+      //   },
+      // },
+      reportCompressedSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 4000
     },

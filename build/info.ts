@@ -3,7 +3,7 @@ import type { Plugin } from "vite";
 import dayjs, { Dayjs } from "dayjs";
 import { sum } from "lodash-unified";
 import duration from "dayjs/plugin/duration";
-import { green, blue, bold } from "picocolors";
+import { green, bold } from "picocolors";
 dayjs.extend(duration);
 
 const staticPath = "dist";
@@ -50,15 +50,6 @@ export function viteBuildInfo(): Plugin {
       config = resolvedConfig;
     },
     buildStart() {
-      console.log(
-        bold(
-          green(
-            `👏欢迎使用${blue(
-              "[vue-pure-admin]"
-            )}，如果您感觉不错，记得点击后面链接给个star哦💖 https://github.com/xiaoxian521/vue-pure-admin`
-          )
-        )
-      );
       if (config.command === "build") {
         startTime = dayjs(new Date());
       }
